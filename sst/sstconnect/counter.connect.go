@@ -22,7 +22,7 @@ const _ = connect_go.IsAtLeastVersion0_1_0
 
 const (
 	// CounterServiceName is the fully-qualified name of the CounterService service.
-	CounterServiceName = "CounterService"
+	CounterServiceName = "sst.CounterService"
 )
 
 // These constants are the fully-qualified names of the RPCs defined in this package. They're
@@ -34,17 +34,17 @@ const (
 // period.
 const (
 	// CounterServiceCountToProcedure is the fully-qualified name of the CounterService's CountTo RPC.
-	CounterServiceCountToProcedure = "/CounterService/CountTo"
+	CounterServiceCountToProcedure = "/sst.CounterService/CountTo"
 )
 
-// CounterServiceClient is a client for the CounterService service.
+// CounterServiceClient is a client for the sst.CounterService service.
 type CounterServiceClient interface {
 	// Counts to a certain number, returning every integer in the process.
 	CountTo(context.Context, *connect_go.Request[sst.CountToRequest]) (*connect_go.ServerStreamForClient[sst.CountToResponse], error)
 }
 
-// NewCounterServiceClient constructs a client for the CounterService service. By default, it uses
-// the Connect protocol with the binary Protobuf Codec, asks for gzipped responses, and sends
+// NewCounterServiceClient constructs a client for the sst.CounterService service. By default, it
+// uses the Connect protocol with the binary Protobuf Codec, asks for gzipped responses, and sends
 // uncompressed requests. To use the gRPC or gRPC-Web protocols, supply the connect.WithGRPC() or
 // connect.WithGRPCWeb() options.
 //
@@ -66,12 +66,12 @@ type counterServiceClient struct {
 	countTo *connect_go.Client[sst.CountToRequest, sst.CountToResponse]
 }
 
-// CountTo calls CounterService.CountTo.
+// CountTo calls sst.CounterService.CountTo.
 func (c *counterServiceClient) CountTo(ctx context.Context, req *connect_go.Request[sst.CountToRequest]) (*connect_go.ServerStreamForClient[sst.CountToResponse], error) {
 	return c.countTo.CallServerStream(ctx, req)
 }
 
-// CounterServiceHandler is an implementation of the CounterService service.
+// CounterServiceHandler is an implementation of the sst.CounterService service.
 type CounterServiceHandler interface {
 	// Counts to a certain number, returning every integer in the process.
 	CountTo(context.Context, *connect_go.Request[sst.CountToRequest], *connect_go.ServerStream[sst.CountToResponse]) error
@@ -89,12 +89,12 @@ func NewCounterServiceHandler(svc CounterServiceHandler, opts ...connect_go.Hand
 		svc.CountTo,
 		opts...,
 	))
-	return "/.CounterService/", mux
+	return "/sst.CounterService/", mux
 }
 
 // UnimplementedCounterServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedCounterServiceHandler struct{}
 
 func (UnimplementedCounterServiceHandler) CountTo(context.Context, *connect_go.Request[sst.CountToRequest], *connect_go.ServerStream[sst.CountToResponse]) error {
-	return connect_go.NewError(connect_go.CodeUnimplemented, errors.New("CounterService.CountTo is not implemented"))
+	return connect_go.NewError(connect_go.CodeUnimplemented, errors.New("sst.CounterService.CountTo is not implemented"))
 }

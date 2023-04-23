@@ -7,11 +7,17 @@
     "type-check": "tsc"
   },
   "dependencies": {
+    "@bufbuild/connect": "^0.8.6",
+    "@bufbuild/connect-web": "^0.8.6",
     "next": "latest",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@bufbuild/buf": "^1.15.0-1",
+    "@bufbuild/protoc-gen-connect-es": "^0.8.6",
+    "@bufbuild/protoc-gen-connect-query": "^0.2.0",
+    "@bufbuild/protoc-gen-es": "^1.2.0",
     "@types/node": "12.20.55",
     "@types/react": "17.0.58",
     "@types/react-dom": "^17.0.1",

@@ -8,3 +8,15 @@ plugins:
     out: sst
     opt:
       - paths=source_relative
+  - plugin: es
+    out: sst-js
+    opt:
+      - target=ts,import_extension=.ts
+  - plugin: connect-es
+    out: sst-js
+    opt:
+      - target=ts,import_extension=.ts
+  - plugin: connect-query
+    out: sst-js
+    opt:
+      - target=ts,import_extension=.ts

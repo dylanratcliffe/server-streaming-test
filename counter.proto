@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+package sst;
+
 option go_package = "github.com/dylanratcliffe/server-streaming-test/sst;sst";
 
 service CounterService {
