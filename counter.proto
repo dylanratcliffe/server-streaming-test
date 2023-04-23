@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option go_package = "github.com/dylanratcliffe/server-streaming-test/sst;sst";
+
+service CounterService {
+    // Counts to a certain number, returning every integer in the process.
+    rpc CountTo(CountToRequest) returns (stream CountToResponse);
+}
+
+message CountToRequest {
+    // The number to count to.
+    int32 to = 1;
+}
+
+message CountToResponse {
+    // The current count.
+    int32 count = 1;
+}
