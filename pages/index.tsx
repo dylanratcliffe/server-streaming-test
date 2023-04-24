@@ -28,11 +28,6 @@ const IndexPage = () => {
   }
 
   return <Layout title="Home | Next.js + TypeScript Example">
-    <h1>Hello Next.js 👋</h1>
-    <p>
-      <Link href="/about">About</Link>
-    </p>
-
     <input value={countTo} onChange={(e) => setCountTo(parseInt(e.target.value))} />
     <button onClick={submit}>Go!</button><br/>
   
